@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Check, Copy, Download, MapPin, GraduationCap } from "lucide-react";
+import Image from "next/image";
+import { Mail, Check, Copy, Download, MapPin, GraduationCap, TrendingUp, Users, Cpu, ShieldCheck } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
@@ -26,9 +27,9 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
       : "/Srijan_Tiwari_ML_DS.pdf";
 
   return (
-    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden">
       {/* Background radial glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] pointer-events-none radial-glow -z-10" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none radial-glow -z-10" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Availability Badge */}
@@ -37,56 +38,133 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          <span className="font-mono text-[11px] tracking-wide text-zinc-400">
+          <span className="font-mono text-[11px] tracking-wide text-zinc-300 font-medium">
             {personal.statusBadge}
           </span>
         </div>
 
-        {/* Main Headline */}
-        <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white">
+        {/* Hero Grid: Left Content + Right Photo */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Left Column: Headlines & Bio */}
+          <div className="md:col-span-8 space-y-4">
+            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
               {personal.name}
             </h1>
+
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-zinc-400">
+              <span className="flex items-center gap-1.5 text-zinc-200 font-medium">
+                <GraduationCap size={16} className="text-blue-400" />
+                {personal.degree}, {personal.college}
+              </span>
+              <span className="text-zinc-600">•</span>
+              <span className="flex items-center gap-1.5">
+                <MapPin size={15} className="text-zinc-500" />
+                {personal.location}
+              </span>
+              <span className="text-zinc-600">•</span>
+              <span className="text-zinc-400 font-mono text-xs">
+                Batch: {personal.batch}
+              </span>
+            </div>
+
+            {/* Dynamic Bio Paragraph according to active role */}
+            <p className="text-base sm:text-lg text-zinc-300 leading-relaxed pt-2">
+              {activeRole === "sde" ? (
+                <>
+                  Passionate about <span className="text-blue-400 font-medium">C++20 systems programming</span>,{" "}
+                  <span className="text-zinc-100 font-medium">low-latency stream processing</span>, and{" "}
+                  <span className="text-zinc-100 font-medium">distributed Web3 architectures</span>. Built custom STL containers, an NP-hard graph optimization solver, and scaled enterprise backends at Genuity IO.
+                </>
+              ) : (
+                <>
+                  Focused on <span className="text-blue-400 font-medium">Deep Reinforcement Learning</span>,{" "}
+                  <span className="text-zinc-100 font-medium">Computer Vision (U-Net++)</span>, and{" "}
+                  <span className="text-zinc-100 font-medium">LLM-as-a-Judge Evaluation</span>. Led synthetic generative modeling across 20+ models and engineered autonomous trading pipelines.
+                </>
+              )}
+            </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-zinc-400">
-            <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
-              <GraduationCap size={16} className="text-blue-400" />
-              {personal.degree}, {personal.college}
-            </span>
-            <span className="text-zinc-600">•</span>
-            <span className="flex items-center gap-1.5">
-              <MapPin size={15} className="text-zinc-500" />
-              {personal.location}
-            </span>
-            <span className="text-zinc-600">•</span>
-            <span className="text-zinc-400 font-mono text-xs">
-              Batch: {personal.batch}
-            </span>
+          {/* Right Column: Sleek Photo Frame */}
+          <div className="md:col-span-4 flex justify-center md:justify-end">
+            <div className="relative group">
+              {/* Outer glowing ambient ring */}
+              <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600/40 via-blue-500/20 to-indigo-600/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
+              
+              {/* Main Photo Card */}
+              <div className="relative w-48 h-56 sm:w-52 sm:h-60 rounded-2xl bg-gradient-to-b from-zinc-800/80 to-zinc-950 p-2 border border-zinc-700/80 shadow-2xl overflow-hidden group-hover:border-blue-500/60 transition-all duration-300">
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-zinc-900 flex items-center justify-center">
+                  <Image
+                    src="/srijan.jpg"
+                    alt="Srijan Tiwari - IIT Guwahati"
+                    fill
+                    sizes="(max-width: 768px) 192px, 208px"
+                    priority
+                    className="object-cover object-top filter contrast-105 brightness-100 group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Subtle dark bottom gradient for blending */}
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none" />
+                </div>
+
+                {/* Floating Micro-Badge */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-2.5 py-1 rounded-lg bg-zinc-900/90 backdrop-blur-md border border-zinc-800 text-[10px] font-mono text-zinc-300 shadow-lg">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    IIT Guwahati
+                  </span>
+                  <span className="text-blue-400 font-semibold">B.Tech</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Impact Stats Row (Makes portfolio feel alive with concrete technical metrics) */}
+        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-all">
+            <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight flex items-center gap-1.5">
+              <span>100K+</span>
+              <Cpu size={14} className="text-blue-400" />
+            </div>
+            <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
+              Workload records screened in &lt;65s within 120MB RAM
+            </p>
           </div>
 
-          {/* Dynamic Bio Paragraph according to active role */}
-          <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl pt-2">
-            {activeRole === "sde" ? (
-              <>
-                Passionate about <span className="text-zinc-100 font-medium">C++20 systems programming</span>,{" "}
-                <span className="text-zinc-100 font-medium">low-latency algorithms</span>, and{" "}
-                <span className="text-zinc-100 font-medium">distributed Web3 infrastructures</span>. Built high-throughput data processing engines, custom STL containers, and graph optimization solvers.
-              </>
-            ) : (
-              <>
-                Focused on <span className="text-zinc-100 font-medium">Deep Reinforcement Learning</span>,{" "}
-                <span className="text-zinc-100 font-medium">Computer Vision (U-Net++)</span>, and{" "}
-                <span className="text-zinc-100 font-medium">LLM-as-a-Judge Evaluation</span>. Led synthetic generative modeling across 20+ models and engineered autonomous trading pipelines.
-              </>
-            )}
-          </p>
+          <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-all">
+            <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight flex items-center gap-1.5">
+              <span>6 Devs</span>
+              <Users size={14} className="text-blue-400" />
+            </div>
+            <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
+              Cross-functional team led at Genuity IO for L&T
+            </p>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-all">
+            <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight flex items-center gap-1.5">
+              <span>20+</span>
+              <TrendingUp size={14} className="text-blue-400" />
+            </div>
+            <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
+              Generative AI & synthetic models evaluated & benchmarked
+            </p>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-all">
+            <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight flex items-center gap-1.5">
+              <span>Top 10%</span>
+              <ShieldCheck size={14} className="text-blue-400" />
+            </div>
+            <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
+              Nationwide ranking in Summer Analytics ML competition
+            </p>
+          </div>
         </div>
 
         {/* Role Toggle Selector in Hero */}
         <div className="mt-8 p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-sm max-w-lg">
-          <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-2 flex items-center justify-between">
+          <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 flex items-center justify-between">
             <span>Tailor Portfolio View:</span>
             <span className="text-blue-400 font-semibold">
               Currently: {activeRole === "sde" ? "Systems & SDE" : "ML & Data Science"}
@@ -97,7 +175,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
               onClick={() => setActiveRole("sde")}
               className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
                 activeRole === "sde"
-                  ? "bg-blue-600/90 text-white shadow-md border border-blue-500/50"
+                  ? "bg-blue-600 text-white shadow-md border border-blue-500/50"
                   : "bg-zinc-800/40 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/80 border border-transparent"
               }`}
             >
@@ -107,7 +185,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
               onClick={() => setActiveRole("ml")}
               className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
                 activeRole === "ml"
-                  ? "bg-blue-600/90 text-white shadow-md border border-blue-500/50"
+                  ? "bg-blue-600 text-white shadow-md border border-blue-500/50"
                   : "bg-zinc-800/40 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/80 border border-transparent"
               }`}
             >
@@ -121,13 +199,13 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
           {/* Copy Email Pill */}
           <button
             onClick={copyEmail}
-            className="group relative flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-300 hover:border-zinc-700 hover:text-white transition-all active:scale-95"
+            className="group relative flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-300 hover:border-zinc-700 hover:text-white transition-all active:scale-95 shadow-sm"
             title="Click to copy email address"
           >
             {copied ? (
               <>
                 <Check size={14} className="text-emerald-400" />
-                <span className="text-emerald-300">Copied to clipboard!</span>
+                <span className="text-emerald-300 font-medium">Copied to clipboard!</span>
               </>
             ) : (
               <>

@@ -44,10 +44,13 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               <FolderGit2 size={18} />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-                Featured Projects
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                <span>Featured Projects</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-blue-950 text-blue-400 border border-blue-800/60 font-mono">
+                  {sortedProjects.length}
+                </span>
               </h2>
-              <p className="text-xs text-zinc-500 font-mono uppercase tracking-wider">
+              <p className="text-xs text-zinc-400 font-mono uppercase tracking-wider">
                 Ranked for: <span className="text-blue-400 font-semibold">{activeRole === "sde" ? "Software Engineering & C++" : "Machine Learning & AI"}</span>
               </p>
             </div>
@@ -59,7 +62,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("all")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "all"
-                  ? "bg-zinc-800 text-white font-medium"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm"
                   : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
@@ -69,7 +72,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("sde")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "sde"
-                  ? "bg-zinc-800 text-white font-medium"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm"
                   : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
@@ -79,7 +82,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("ml")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "ml"
-                  ? "bg-zinc-800 text-white font-medium"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm"
                   : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
@@ -89,7 +92,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("web3")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "web3"
-                  ? "bg-zinc-800 text-white font-medium"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm"
                   : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
@@ -106,7 +109,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
             return (
               <div
                 key={project.id}
-                className="group relative p-6 rounded-2xl bg-zinc-900/30 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/60 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.06)]"
+                className="group relative p-6 sm:p-7 rounded-2xl bg-zinc-900/35 border border-zinc-800/80 hover:border-blue-500/40 hover:bg-zinc-900/60 transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.08)]"
               >
                 {/* Header row: Title + Actions */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
@@ -116,8 +119,14 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                         {project.title}
                       </h3>
                       {project.featured && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase font-semibold bg-blue-950/60 text-blue-400 border border-blue-800/40">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase font-semibold bg-blue-950/80 text-blue-300 border border-blue-700/50 shadow-sm">
                           Featured
+                        </span>
+                      )}
+                      {project.demoUrl && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          Live App
                         </span>
                       )}
                     </div>
@@ -141,8 +150,8 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                 {/* Technical Bullets */}
                 <div className="space-y-2 mb-5">
                   {(isExpanded ? project.bullets : project.bullets.slice(0, 2)).map((bullet, bIdx) => (
-                    <div key={bIdx} className="text-xs text-zinc-400 flex items-start gap-2 leading-relaxed">
-                      <span className="text-blue-500 font-bold mt-0.5">•</span>
+                    <div key={bIdx} className="text-xs text-zinc-300 flex items-start gap-2.5 leading-relaxed">
+                      <span className="text-blue-400 font-bold mt-0.5">•</span>
                       <span>{bullet}</span>
                     </div>
                   ))}
@@ -173,7 +182,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                     {project.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-900 text-zinc-400 border border-zinc-800"
+                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-900/90 text-zinc-400 border border-zinc-800 hover:text-zinc-200 transition-colors"
                       >
                         {tag}
                       </span>
@@ -212,7 +221,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                         href={project.demoUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600/90 text-white hover:bg-blue-500 border border-blue-500/50 shadow-sm shadow-blue-900/30 transition-all active:scale-95"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white hover:bg-blue-500 border border-blue-500/50 shadow-md shadow-blue-900/30 transition-all active:scale-95"
                       >
                         <ExternalLink size={14} />
                         <span>Live Demo</span>
