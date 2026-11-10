@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FolderGit2, ExternalLink, Play, ChevronDown, ChevronUp, BookOpen } from "lucide-react";
+import { FolderGit2, ExternalLink, Play, ChevronDown, ChevronUp } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
 import SpotlightCard from "@/components/SpotlightCard";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
@@ -63,8 +63,8 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("all")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "all"
-                  ? "bg-zinc-800 text-white font-medium shadow-sm"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm scale-105"
+                  : "text-zinc-400 hover:text-zinc-200 hover:scale-105"
               }`}
             >
               All ({projects.length})
@@ -73,8 +73,8 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("sde")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "sde"
-                  ? "bg-zinc-800 text-white font-medium shadow-sm"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm scale-105"
+                  : "text-zinc-400 hover:text-zinc-200 hover:scale-105"
               }`}
             >
               SDE & Systems
@@ -83,8 +83,8 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("ml")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "ml"
-                  ? "bg-zinc-800 text-white font-medium shadow-sm"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm scale-105"
+                  : "text-zinc-400 hover:text-zinc-200 hover:scale-105"
               }`}
             >
               ML & AI
@@ -93,8 +93,8 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
               onClick={() => setFilter("web3")}
               className={`px-3 py-1 rounded-lg transition-all ${
                 filter === "web3"
-                  ? "bg-zinc-800 text-white font-medium shadow-sm"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-zinc-800 text-white font-medium shadow-sm scale-105"
+                  : "text-zinc-400 hover:text-zinc-200 hover:scale-105"
               }`}
             >
               Web3
@@ -110,7 +110,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
             return (
               <SpotlightCard
                 key={project.id}
-                className="group relative transition-all duration-300"
+                className="group relative"
               >
                 {/* Header row: Title + Actions */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
@@ -148,18 +148,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                   {project.description}
                 </p>
 
-                {/* Story / Backstory Box */}
-                {project.story && (
-                  <div className="mb-4 p-3.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80 text-xs text-zinc-300 leading-relaxed space-y-1.5">
-                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-blue-400 font-medium">
-                      <BookOpen size={12} />
-                      <span>The Backstory:</span>
-                    </div>
-                    <p className="text-zinc-400">{project.story}</p>
-                  </div>
-                )}
-
-                {/* Technical Takeaways */}
+                {/* Technical Implementation Bullets */}
                 <div className="space-y-2 mb-5">
                   {(isExpanded ? project.takeaways : project.takeaways.slice(0, 2)).map((item, bIdx) => (
                     <div key={bIdx} className="text-xs text-zinc-300 flex items-start gap-2.5 leading-relaxed">
@@ -201,14 +190,14 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                     ))}
                   </div>
 
-                  {/* Actions */}
+                  {/* Actions with hover bulge */}
                   <div className="flex items-center gap-2 flex-wrap">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-white border border-zinc-700/60 transition-all active:scale-95"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-white hover:scale-105 active:scale-95 border border-zinc-700/60 transition-all shadow-sm"
                       >
                         <GithubIcon size={14} />
                         <span>Source</span>
@@ -220,7 +209,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                         href={project.githubUrl2}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-white border border-zinc-700/60 transition-all active:scale-95"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-white hover:scale-105 active:scale-95 border border-zinc-700/60 transition-all shadow-sm"
                         title={project.github2Label || "Second Repository"}
                       >
                         <GithubIcon size={14} />
@@ -233,7 +222,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                         href={project.demoUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white hover:bg-blue-500 border border-blue-500/50 shadow-md shadow-blue-900/30 transition-all active:scale-95"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white hover:bg-blue-500 hover:scale-105 active:scale-95 border border-blue-500/50 shadow-md shadow-blue-900/30 transition-all"
                       >
                         <ExternalLink size={14} />
                         <span>Live Demo</span>
@@ -245,7 +234,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                         href={project.videoUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-white border border-zinc-700/60 transition-all active:scale-95"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-white hover:scale-105 active:scale-95 border border-zinc-700/60 transition-all shadow-sm"
                       >
                         <Play size={14} />
                         <span>Watch Demo</span>

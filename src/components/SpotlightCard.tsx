@@ -8,25 +8,28 @@ interface SpotlightCardProps {
 }
 
 export default function SpotlightCard({ children, className = "" }: SpotlightCardProps) {
-  const divRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
+  const [transform, setTransform] = useState("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current) return;
+    if (!cardRef.current) return;
 
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
+    setPosition({ x, y });
 
-  const handleFocus = () => {
-    setOpacity(1);
-  };
+    // Calculate 3D tilt & bulging perspective
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -3; // subtle 3deg tilt
+    const rotateY = ((x - centerX) / centerX) * 3;
 
-  const handleBlur = () => {
-    setOpacity(0);
+    setTransform(`perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.018, 1.018, 1.018) translateY(-4px)`);
   };
 
   const handleMouseEnter = () => {
@@ -35,27 +38,33 @@ export default function SpotlightCard({ children, className = "" }: SpotlightCar
 
   const handleMouseLeave = () => {
     setOpacity(0);
+    setTransform("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0px)");
   };
 
   return (
     <div
-      ref={divRef}
+      ref={cardRef}
       onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-6 transition-all duration-300 hover:border-zinc-700 ${className}`}
+      style={{
+        transform,
+        transition: "transform 0.18s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out",
+        transformStyle: "preserve-3d",
+      }}
+      className={`relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-6 shadow-lg shadow-black/40 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 cursor-default ${className}`}
     >
       {/* Dynamic Cursor Spotlight Layer */}
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
         style={{
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(59, 130, 246, 0.12), transparent 80%)`,
+          background: `radial-gradient(500px circle at ${position.x}px ${position.y}px, rgba(59, 130, 246, 0.15), transparent 80%)`,
         }}
       />
-      {children}
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   );
 }
