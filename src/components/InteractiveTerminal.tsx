@@ -62,7 +62,7 @@ export default function InteractiveTerminal() {
         output = (
           <div className="text-xs space-y-1">
             <p className="text-zinc-400">Primary Languages:</p>
-            <p className="text-blue-400 font-mono">C++20, Python, Solidity, TypeScript, SQL</p>
+            <p className="text-blue-400 font-mono">C++, Python, Solidity, TypeScript, SQL</p>
             <p className="text-zinc-400 pt-1">Core Interests:</p>
             <p className="text-emerald-400 font-mono">High-throughput stream processing, Low-latency systems, Deep RL, Zero-Knowledge circuits</p>
           </div>
@@ -73,7 +73,7 @@ export default function InteractiveTerminal() {
         output = (
           <div className="text-xs space-y-1.5 text-zinc-300">
             <p><span className="text-blue-400 font-semibold">1. Barely Tokenized:</span> P2P microgrid power trading with ZoKrates ZK-SNARKs & Solidity.</p>
-            <p><span className="text-blue-400 font-semibold">2. C++20 Image Engine & STL:</span> Bitwise Huffman codec & custom STL containers from scratch.</p>
+            <p><span className="text-blue-400 font-semibold">2. C++ Image Engine & STL:</span> Bitwise Huffman codec & custom STL containers from scratch.</p>
             <p><span className="text-blue-400 font-semibold">3. Candidate Search Engine:</span> Screened 100k profiles in &lt;65s using bounded min-heap in 120MB RAM.</p>
             <p><span className="text-blue-400 font-semibold">4. Promo Finder:</span> Screenplay clip extraction evaluated by Gemma-26B LLM-as-a-Judge.</p>
           </div>

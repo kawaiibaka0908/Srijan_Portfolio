@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Srijan Tiwari | Software Engineer & ML Developer | IIT Guwahati",
-  description: "Portfolio of Srijan Tiwari - Final-Year B.Tech Undergraduate at IIT Guwahati. Specializing in high-performance C++20 systems, scalable distributed architectures, and production Machine Learning pipelines.",
+  description: "Portfolio of Srijan Tiwari - Final-Year B.Tech Undergraduate at IIT Guwahati. Specializing in high-performance C++ systems, scalable distributed architectures, and production Machine Learning pipelines.",
   keywords: ["Srijan Tiwari", "IIT Guwahati", "Software Engineer", "C++", "Machine Learning", "Portfolio", "SDE", "Deep Learning", "Next.js"],
   authors: [{ name: "Srijan Tiwari", url: "https://github.com/kawaiibaka0908" }],
   openGraph: {
     title: "Srijan Tiwari | Portfolio",
-    description: "Final-Year B.Tech Undergraduate at IIT Guwahati. C++20 systems, distributed architectures, and ML.",
+    description: "Final-Year B.Tech Undergraduate at IIT Guwahati. C++ systems, distributed architectures, and ML.",
     url: "https://github.com/kawaiibaka0908",
     siteName: "Srijan Tiwari Portfolio",
     locale: "en_US",

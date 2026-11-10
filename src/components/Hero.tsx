@@ -76,7 +76,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
             <p className="text-base sm:text-lg text-zinc-300 leading-relaxed pt-1">
               {activeRole === "sde" ? (
                 <>
-                  I&apos;m a final-year undergrad at <span className="text-white font-medium">IIT Guwahati</span> who builds systems that run fast and don&apos;t crash under load. Most of my work centers around <span className="text-blue-400 font-medium">modern C++20</span>, <span className="text-white font-medium">low-latency stream algorithms</span>, and <span className="text-white font-medium">distributed Web3 protocols</span>. Last summer, I led a 6-engineer team shipping synthetic data pipelines for enterprise clients at Genuity IO.
+                  I&apos;m a final-year undergrad at <span className="text-white font-medium">IIT Guwahati</span> who builds systems that run fast and don&apos;t crash under load. Most of my work centers around <span className="text-blue-400 font-medium">C++</span>, <span className="text-white font-medium">low-latency stream algorithms</span>, and <span className="text-white font-medium">distributed Web3 protocols</span>. Last summer, I led a 6-engineer team shipping synthetic data pipelines for enterprise clients at Genuity IO.
                 </>
               ) : (
                 <>

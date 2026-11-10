@@ -97,18 +97,18 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "cpp-image-engine",
-      title: "C++20 Image Engine & Custom STL Library",
+      title: "C++ Image Engine & Custom STL Library",
       subtitle: "Header-Only Image Processing, Bitwise Huffman Codec & Containers",
       category: ["sde", "systems"],
       period: "Feb 2026 — Mar 2026",
-      description: "A standalone C++20 image processing framework and generic container library written completely from scratch to understand low-level byte packing, custom allocators, and STL iterators without standard library shortcuts.",
-      story: "I wanted to deeply understand how memory layout and spatial algorithms work under the hood in C++20. I wrote a binary parser for 24-bit uncompressed BMP images with row padding and endianness handling, then implemented custom spatial convolution kernels (Sobel, Scharr, Gaussian blur). On top of that, I built a bit-level Huffman compression engine with 64KB buffered stream readers and reimplemented 6 core data structures with STL-compliant iterators.",
+      description: "A standalone C++ image processing framework and generic container library written completely from scratch to understand low-level byte packing, custom allocators, and STL iterators without standard library shortcuts.",
+      story: "I wanted to deeply understand how memory layout and spatial algorithms work under the hood in C++. I wrote a binary parser for 24-bit uncompressed BMP images with row padding and endianness handling, then implemented custom spatial convolution kernels (Sobel, Scharr, Gaussian blur). On top of that, I built a bit-level Huffman compression engine with 64KB buffered stream readers and reimplemented 6 core data structures with STL-compliant iterators.",
       takeaways: [
         "Parsed raw 24-bit BMP binary headers with row-stride alignment and built spatial image filters (Sobel edge detection, Gaussian blur) without external dependencies.",
         "Engineered a bit-level Huffman compressor with 64KB buffered I/O streams and recursive serialization for serializing variable-length binary trees.",
         "Implemented generic array, linked lists, stacks, and queues with random-access and bidirectional iterators, alongside a multicast delegate event system."
       ],
-      tags: ["C++20", "Templates", "Custom Iterators", "Bit Manipulation", "STL Containers", "Image Processing"],
+      tags: ["C++", "Templates", "Custom Iterators", "Bit Manipulation", "STL Containers", "Image Processing"],
       githubUrl: "https://github.com/kawaiibaka0908/Image_library_Cpp",
       githubUrl2: "https://github.com/kawaiibaka0908/DAS_Implementation",
       github2Label: "STL / Containers Repo",
@@ -227,8 +227,8 @@ export const PORTFOLIO_DATA = {
   ] as Project[],
 
   skills: {
-    languages: ["C++20", "C", "Python", "Solidity", "JavaScript", "TypeScript", "SQL", "Bash"],
-    systemsAndCpp: ["Modern C++20", "Templates & Generic Programming", "Custom Iterators", "Memory Layout & Bitwise I/O", "Data Structures & Algorithms", "Operating Systems", "Computer Networks", "DBMS"],
+    languages: ["C++", "C", "Python", "Solidity", "JavaScript", "TypeScript", "SQL", "Bash"],
+    systemsAndCpp: ["C++", "Templates & Generic Programming", "Custom Iterators", "Memory Layout & Bitwise I/O", "Data Structures & Algorithms", "Operating Systems", "Computer Networks", "DBMS"],
     machineLearning: ["PyTorch", "TensorFlow 2.x", "Deep RL (DDDQN, Gymnasium)", "Computer Vision (U-Net++, CNNs)", "Scikit-Learn", "BiLSTM", "Transformers"],
     genAIAndNLP: ["LLM-as-a-Judge Evaluation", "Sentence-Transformers", "TF-IDF Vectorization", "Prompt Engineering", "Pydantic Schemas", "OpenAI / Gemini / Groq APIs"],
     backendAndCloud: ["Next.js 15", "React.js", "FastAPI", "Node.js", "Express.js", "Tailwind CSS", "PostgreSQL", "MongoDB", "Docker", "Git"],
