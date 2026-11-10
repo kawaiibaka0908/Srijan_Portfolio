@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { FolderGit2, ExternalLink, Play, ChevronDown, ChevronUp } from "lucide-react";
+import { FolderGit2, ExternalLink, Play, ChevronDown, ChevronUp, BookOpen } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
+import SpotlightCard from "@/components/SpotlightCard";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 interface ProjectsSectionProps {
@@ -51,7 +52,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                 </span>
               </h2>
               <p className="text-xs text-zinc-400 font-mono uppercase tracking-wider">
-                Ranked for: <span className="text-blue-400 font-semibold">{activeRole === "sde" ? "Software Engineering & C++" : "Machine Learning & AI"}</span>
+                Prioritized for: <span className="text-blue-400 font-semibold">{activeRole === "sde" ? "Systems & SDE Roles" : "ML & AI Roles"}</span>
               </p>
             </div>
           </div>
@@ -107,12 +108,12 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
             const isExpanded = expandedCards[project.id];
 
             return (
-              <div
+              <SpotlightCard
                 key={project.id}
-                className="group relative p-6 sm:p-7 rounded-2xl bg-zinc-900/35 border border-zinc-800/80 hover:border-blue-500/40 hover:bg-zinc-900/60 transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.08)]"
+                className="group relative transition-all duration-300"
               >
                 {/* Header row: Title + Actions */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2">
                   <div className="space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-blue-400 transition-colors">
@@ -126,7 +127,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                       {project.demoUrl && (
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          Live App
+                          Live Demo
                         </span>
                       )}
                     </div>
@@ -142,20 +143,31 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                   </div>
                 </div>
 
-                {/* Short Description */}
+                {/* Natural Human Summary */}
                 <p className="text-sm text-zinc-300 mb-4 leading-relaxed">
                   {project.description}
                 </p>
 
-                {/* Technical Bullets */}
+                {/* Story / Backstory Box */}
+                {project.story && (
+                  <div className="mb-4 p-3.5 rounded-xl bg-zinc-950/60 border border-zinc-800/80 text-xs text-zinc-300 leading-relaxed space-y-1.5">
+                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-blue-400 font-medium">
+                      <BookOpen size={12} />
+                      <span>The Backstory:</span>
+                    </div>
+                    <p className="text-zinc-400">{project.story}</p>
+                  </div>
+                )}
+
+                {/* Technical Takeaways */}
                 <div className="space-y-2 mb-5">
-                  {(isExpanded ? project.bullets : project.bullets.slice(0, 2)).map((bullet, bIdx) => (
+                  {(isExpanded ? project.takeaways : project.takeaways.slice(0, 2)).map((item, bIdx) => (
                     <div key={bIdx} className="text-xs text-zinc-300 flex items-start gap-2.5 leading-relaxed">
                       <span className="text-blue-400 font-bold mt-0.5">•</span>
-                      <span>{bullet}</span>
+                      <span>{item}</span>
                     </div>
                   ))}
-                  {project.bullets.length > 2 && (
+                  {project.takeaways.length > 2 && (
                     <button
                       onClick={() => toggleExpand(project.id)}
                       className="inline-flex items-center gap-1 text-[11px] font-mono text-blue-400 hover:text-blue-300 mt-1 transition-colors"
@@ -167,7 +179,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                         </>
                       ) : (
                         <>
-                          <span>Read full implementation ({project.bullets.length - 2} more points)</span>
+                          <span>Read full technical implementation ({project.takeaways.length - 2} more points)</span>
                           <ChevronDown size={12} />
                         </>
                       )}
@@ -241,7 +253,7 @@ export default function ProjectsSection({ activeRole }: ProjectsSectionProps) {
                     )}
                   </div>
                 </div>
-              </div>
+              </SpotlightCard>
             );
           })}
         </div>

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Mail, Check, Copy, Download, MapPin, GraduationCap, TrendingUp, Users, Cpu, ShieldCheck } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
+import LiveClock from "@/components/LiveClock";
+import InteractiveTerminal from "@/components/InteractiveTerminal";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 interface HeroProps {
@@ -27,31 +29,34 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
       : "/Srijan_Tiwari_ML_DS.pdf";
 
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden">
+    <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none radial-glow -z-10" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        {/* Availability Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs text-zinc-300 mb-6 shadow-inner">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="font-mono text-[11px] tracking-wide text-zinc-300 font-medium">
-            {personal.statusBadge}
-          </span>
+        {/* Top Badges Row: Live Clock + Status Pill */}
+        <div className="flex flex-wrap items-center gap-2.5 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs text-zinc-300 shadow-inner">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="font-mono text-[11px] tracking-wide text-zinc-300 font-medium">
+              {personal.statusBadge}
+            </span>
+          </div>
+          <LiveClock />
         </div>
 
         {/* Hero Grid: Left Content + Right Photo */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          {/* Left Column: Headlines & Bio */}
+          {/* Left Column: Headlines & Human Bio */}
           <div className="md:col-span-8 space-y-4">
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
-              {personal.name}
+              Hey, I&apos;m {personal.name}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-zinc-400">
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-3 text-sm text-zinc-400">
               <span className="flex items-center gap-1.5 text-zinc-200 font-medium">
                 <GraduationCap size={16} className="text-blue-400" />
                 {personal.degree}, {personal.college}
@@ -63,35 +68,37 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
               </span>
               <span className="text-zinc-600">•</span>
               <span className="text-zinc-400 font-mono text-xs">
-                Batch: {personal.batch}
+                Class of 2027
               </span>
             </div>
 
-            {/* Dynamic Bio Paragraph according to active role */}
-            <p className="text-base sm:text-lg text-zinc-300 leading-relaxed pt-2">
+            {/* Humanized, grounded bio paragraph */}
+            <p className="text-base sm:text-lg text-zinc-300 leading-relaxed pt-1">
               {activeRole === "sde" ? (
                 <>
-                  Passionate about <span className="text-blue-400 font-medium">C++20 systems programming</span>,{" "}
-                  <span className="text-zinc-100 font-medium">low-latency stream processing</span>, and{" "}
-                  <span className="text-zinc-100 font-medium">distributed Web3 architectures</span>. Built custom STL containers, an NP-hard graph optimization solver, and scaled enterprise backends at Genuity IO.
+                  I&apos;m a final-year undergrad at <span className="text-white font-medium">IIT Guwahati</span> who builds systems that run fast and don&apos;t crash under load. Most of my work centers around <span className="text-blue-400 font-medium">modern C++20</span>, <span className="text-white font-medium">low-latency stream algorithms</span>, and <span className="text-white font-medium">distributed Web3 protocols</span>. Last summer, I led a 6-engineer team shipping synthetic data pipelines for enterprise clients at Genuity IO.
                 </>
               ) : (
                 <>
-                  Focused on <span className="text-blue-400 font-medium">Deep Reinforcement Learning</span>,{" "}
-                  <span className="text-zinc-100 font-medium">Computer Vision (U-Net++)</span>, and{" "}
-                  <span className="text-zinc-100 font-medium">LLM-as-a-Judge Evaluation</span>. Led synthetic generative modeling across 20+ models and engineered autonomous trading pipelines.
+                  I&apos;m a final-year undergrad at <span className="text-white font-medium">IIT Guwahati</span> focused on practical AI. I build <span className="text-blue-400 font-medium">Deep Reinforcement Learning agents</span> for financial time-series, evaluate generative models using <span className="text-white font-medium">LLM-as-a-Judge</span>, and train computer vision networks (U-Net++). Last summer, I led synthetic generative benchmarking across 20+ models at Genuity IO.
                 </>
               )}
             </p>
+
+            {/* Current Focus Note */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 pt-1">
+              <span className="text-emerald-400">⚡</span>
+              <span><strong className="text-zinc-300">Currently:</strong> {personal.currently}</span>
+            </div>
           </div>
 
           {/* Right Column: Sleek Photo Frame */}
           <div className="md:col-span-4 flex justify-center md:justify-end">
             <div className="relative group">
-              {/* Outer glowing ambient ring */}
+              {/* Outer ambient glow */}
               <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-600/40 via-blue-500/20 to-indigo-600/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
               
-              {/* Main Photo Card */}
+              {/* Photo Container */}
               <div className="relative w-48 h-56 sm:w-52 sm:h-60 rounded-2xl bg-gradient-to-b from-zinc-800/80 to-zinc-950 p-2 border border-zinc-700/80 shadow-2xl overflow-hidden group-hover:border-blue-500/60 transition-all duration-300">
                 <div className="relative w-full h-full rounded-xl overflow-hidden bg-zinc-900 flex items-center justify-center">
                   <Image
@@ -102,7 +109,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
                     priority
                     className="object-cover object-top filter contrast-105 brightness-100 group-hover:scale-105 transition-transform duration-500"
                   />
-                  {/* Subtle dark bottom gradient for blending */}
+                  {/* Subtle bottom fade */}
                   <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none" />
                 </div>
 
@@ -119,7 +126,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
           </div>
         </div>
 
-        {/* Impact Stats Row (Makes portfolio feel alive with concrete technical metrics) */}
+        {/* Impact Stats Row */}
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div className="p-3.5 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-all">
             <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight flex items-center gap-1.5">
@@ -137,7 +144,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
               <Users size={14} className="text-blue-400" />
             </div>
             <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
-              Cross-functional team led at Genuity IO for L&T
+              Led engineering team at Genuity IO for L&T
             </p>
           </div>
 
@@ -147,7 +154,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
               <TrendingUp size={14} className="text-blue-400" />
             </div>
             <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
-              Generative AI & synthetic models evaluated & benchmarked
+              Generative models benchmarked across 11 datasets
             </p>
           </div>
 
@@ -157,7 +164,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
               <ShieldCheck size={14} className="text-blue-400" />
             </div>
             <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
-              Nationwide ranking in Summer Analytics ML competition
+              Nationwide finish in Summer Analytics competition
             </p>
           </div>
         </div>
@@ -165,9 +172,9 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
         {/* Role Toggle Selector in Hero */}
         <div className="mt-8 p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-sm max-w-lg">
           <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 flex items-center justify-between">
-            <span>Tailor Portfolio View:</span>
+            <span>Tailor portfolio view:</span>
             <span className="text-blue-400 font-semibold">
-              Currently: {activeRole === "sde" ? "Systems & SDE" : "ML & Data Science"}
+              {activeRole === "sde" ? "Showing Systems & SDE Work" : "Showing ML & AI Work"}
             </span>
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -205,7 +212,7 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
             {copied ? (
               <>
                 <Check size={14} className="text-emerald-400" />
-                <span className="text-emerald-300 font-medium">Copied to clipboard!</span>
+                <span className="text-emerald-300 font-medium">Copied tiwarisrijan612@gmail.com!</span>
               </>
             ) : (
               <>
@@ -248,6 +255,9 @@ export default function Hero({ activeRole, setActiveRole }: HeroProps) {
             </a>
           </div>
         </div>
+
+        {/* Interactive Developer Terminal */}
+        <InteractiveTerminal />
       </div>
     </section>
   );

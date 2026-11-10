@@ -35,10 +35,10 @@ export default function ContactSection() {
                 <span>Get In Touch</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                Let&apos;s build something impactful together.
+                Want to build something fast together?
               </h2>
-              <p className="text-sm text-zinc-400 max-w-xl">
-                I am actively interviewing for <strong className="text-zinc-200">Software Engineering</strong> and <strong className="text-zinc-200">Machine Learning / Data Science</strong> roles. Feel free to reach out directly via email or phone.
+              <p className="text-sm text-zinc-300 max-w-xl leading-relaxed">
+                I&apos;m actively preparing for <strong className="text-white">off-campus SDE and Machine Learning roles</strong> (graduating 2027 from IIT Guwahati). If you have an open position, an interesting problem, or just want to talk tech — drop me an email or a message on LinkedIn.
               </p>
             </div>
 
@@ -51,7 +51,7 @@ export default function ContactSection() {
                     <Mail size={16} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono uppercase text-zinc-500">Primary Email</p>
+                    <p className="text-[10px] font-mono uppercase text-zinc-500">Personal Email</p>
                     <a
                       href={`mailto:${personal.email}`}
                       className="text-xs font-medium text-zinc-200 hover:text-white transition-colors"
@@ -76,7 +76,7 @@ export default function ContactSection() {
                     <Mail size={16} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono uppercase text-zinc-500">IITG Student Email</p>
+                    <p className="text-[10px] font-mono uppercase text-zinc-500">IITG College Email</p>
                     <a
                       href={`mailto:${personal.instituteEmail}`}
                       className="text-xs font-medium text-zinc-200 hover:text-white transition-colors"
@@ -128,14 +128,14 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Quick Action bar */}
+            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-3">
               <a
-                href={`mailto:${personal.email}?subject=Opportunity%20Discussion%20-%20Srijan%20Tiwari`}
+                href={`mailto:${personal.email}?subject=Hi%20Srijan%20-%20Opportunity%20Discussion`}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-medium hover:bg-blue-500 shadow-md shadow-blue-900/30 transition-all active:scale-95"
               >
                 <Send size={14} />
-                <span>Compose Direct Email</span>
+                <span>Send Direct Email</span>
               </a>
 
               <a

@@ -5,7 +5,8 @@ export interface Project {
   category: ('sde' | 'ml' | 'systems' | 'web3')[];
   period: string;
   description: string;
-  bullets: string[];
+  story: string;
+  takeaways: string[];
   tags: string[];
   githubUrl?: string;
   githubUrl2?: string;
@@ -42,8 +43,8 @@ export interface Achievement {
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Srijan Tiwari",
-    tagline: "Final-Year B.Tech Undergraduate at IIT Guwahati",
-    subheading: "Building high-throughput systems, C++20 libraries, and production-grade ML pipelines.",
+    tagline: "Final-year undergrad at IIT Guwahati",
+    subheading: "I like building fast systems in modern C++, low-latency stream processing pipelines, and practical ML models that actually solve a problem.",
     location: "Guwahati, India",
     email: "tiwarisrijan612@gmail.com",
     instituteEmail: "t.srijan@iitg.ac.in",
@@ -52,22 +53,23 @@ export const PORTFOLIO_DATA = {
     githubUsername: "kawaiibaka0908",
     linkedin: "https://www.linkedin.com/in/srijan-tiwari-215a3a286/",
     college: "Indian Institute of Technology (IIT), Guwahati",
-    degree: "Bachelor of Technology (B.Tech)",
-    batch: "2023 - 2027",
-    statusBadge: "Open to SDE & ML / Data Science Roles (2026 - 2027)",
+    degree: "B.Tech in Biosciences & Bioengineering",
+    batch: "2023 — 2027",
+    statusBadge: "Available for SDE & ML / Data Science roles (2026/2027)",
+    currently: "Exploring low-latency streaming engines, zero-knowledge proofs, and deep RL.",
   },
   
   experiences: [
     {
       company: "Genuity IO",
       role: "Lead Software Engineer, Synthetic Data Division",
-      location: "Bengaluru, India",
-      period: "May 2026 - Jul 2026",
-      description: "Led core architecture and development of enterprise synthetic data generation pipelines.",
+      location: "Bengaluru, India (Remote / Hybrid)",
+      period: "May 2026 — Jul 2026",
+      description: "Spent the summer leading a 6-person team building Genuity v2.0 — a modular synthetic data engine that generates realistic tabular, time-series, and relational data without leaking private records.",
       bullets: [
-        "Architected Genuity v2.0, an enterprise synthetic dataset generation library supporting 5 modalities (tabular, time-series, financial, relational, and text) and 20+ generative models, driving core production integration into the Vulpix platform.",
-        "Led a cross-functional group of 6 developers across architecture design, code reviews, and Agile sprint delivery; established a benchmarking framework to validate statistical fidelity, utility, and confidentiality across 20+ models and 11 public benchmarks.",
-        "Engineered production backend workflows for schema profiling, constraint validation, and differential privacy using Python, FastAPI, PostgreSQL, and Docker, scaling the prototype to enterprise client deployment for L&T Technology Services."
+        "Led architecture and sprint delivery for a team of 6 engineers, rolling out 20+ generative models (CTGAN, TVAE, TabDDPM) directly into the core Vulpix platform.",
+        "Built an end-to-end benchmarking suite comparing statistical similarity, downstream ML model utility, and differential privacy across 11 public datasets.",
+        "Engineered production backend services using FastAPI, PostgreSQL, and Docker, successfully deploying the engine for enterprise testing with L&T Technology Services."
       ],
       technologies: ["Python", "FastAPI", "PostgreSQL", "Docker", "CTGAN", "Differential Privacy", "Benchmarking"]
     }
@@ -76,15 +78,16 @@ export const PORTFOLIO_DATA = {
   projects: [
     {
       id: "barely-tokenized",
-      title: "Barely Tokenized: Decentralized P2P Smart-Grid Marketplace",
-      subtitle: "Solidity, ZoKrates (ZK-SNARKs), Next.js, Node.js, Express, MongoDB",
+      title: "Barely Tokenized",
+      subtitle: "Decentralized P2P Smart-Grid Marketplace",
       category: ["sde", "web3"],
-      period: "Jan 2025 - Feb 2025",
-      description: "Autonomous peer-to-peer microgrid energy trading platform with cryptographic proof of balance and transmission telemetry.",
-      bullets: [
-        "Developed a decentralized peer-to-peer energy trading marketplace, integrating Solidity smart contracts, IoT meter telemetry, and 2 zero-knowledge circuits (buyer-balance and energy-reserve proofs) for confidential trade settlement.",
-        "Designed a 2-pointer order-matching and bidding algorithm with dynamic market-cap bounds and grid-operator fallback, alongside a Carbon Credit scoring mechanism to quantify producer efficiency and transmission loss.",
-        "Built a full-stack web application with Next.js, Tailwind CSS, Node.js, Express, and MongoDB for real-time consumption analytics, transaction logging, and wallet authentication, verified across 2 blockchain testnets (Ganache and Ethereum Sepolia)."
+      period: "Jan 2025 — Feb 2025",
+      description: "A decentralized peer-to-peer microgrid where neighbors trade surplus rooftop solar energy directly, using zero-knowledge proofs so no one has to reveal private balances or consumption habits.",
+      story: "During the Kriti inter-hostel technical competition, I designed the full system architecture from scratch. We wanted small households with solar panels to sell excess units directly to their neighbors instead of taking a loss through a central grid. I hooked up Solidity smart contracts with ZoKrates ZK-SNARK circuits for private balance proofs, and built an Express + MongoDB backend and Next.js frontend to visualize real-time power trades.",
+      takeaways: [
+        "Implemented 2 zero-knowledge circuits (ZoKrates) to verify buyer balances and energy reserves before settling transactions on Ethereum Sepolia.",
+        "Created an order-matching algorithm with dynamic market-cap bounds, automated price discovery, and a grid-operator fallback if local supplies fall short.",
+        "Shipped a full Next.js + Tailwind web application with wallet auth, live transaction telemetry, and a custom Carbon Credit tracker."
       ],
       tags: ["Solidity", "ZK-SNARKs", "ZoKrates", "Next.js", "Node.js", "Express", "MongoDB", "Web3.js", "Tailwind CSS"],
       githubUrl: "https://github.com/kawaiibaka0908/KRITI_ENERGY_CHAIN",
@@ -94,33 +97,36 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "cpp-image-engine",
-      title: "C++20 Image Engine, Huffman Codec & Custom STL Library",
-      subtitle: "C++20, Bitwise I/O, Custom Iterators, Spatial Convolutions, Event Dispatcher",
+      title: "C++20 Image Engine & Custom STL Library",
+      subtitle: "Header-Only Image Processing, Bitwise Huffman Codec & Containers",
       category: ["sde", "systems"],
-      period: "Feb 2026 - Mar 2026",
-      description: "High-performance header-only image processing and data compression framework built from scratch in modern C++20.",
-      bullets: [
-        "Constructed a standalone, header-only C++20 image library from scratch, featuring byte-aligned 24-bit BMP parsers with row-padding and endianness handling, as well as 4 spatial convolution filters (Sobel, Scharr, Prewitt, and Gaussian blur).",
-        "Implemented a Huffman Encoder and Decoder, utilizing a 64 KB buffered bit-stream reader and writer, recursive tree-header serialization, and 1-indexed priority queues with O(log N) logarithmic rebalancing.",
-        "Created an STL-compatible generic container package with random-access, forward, and bidirectional iterators across 6 container types (Array, Singly, Circular, Doubly Linked Lists, Stack, Queue), plus a Multicast Delegate event dispatcher."
+      period: "Feb 2026 — Mar 2026",
+      description: "A standalone C++20 image processing framework and generic container library written completely from scratch to understand low-level byte packing, custom allocators, and STL iterators without standard library shortcuts.",
+      story: "I wanted to deeply understand how memory layout and spatial algorithms work under the hood in C++20. I wrote a binary parser for 24-bit uncompressed BMP images with row padding and endianness handling, then implemented custom spatial convolution kernels (Sobel, Scharr, Gaussian blur). On top of that, I built a bit-level Huffman compression engine with 64KB buffered stream readers and reimplemented 6 core data structures with STL-compliant iterators.",
+      takeaways: [
+        "Parsed raw 24-bit BMP binary headers with row-stride alignment and built spatial image filters (Sobel edge detection, Gaussian blur) without external dependencies.",
+        "Engineered a bit-level Huffman compressor with 64KB buffered I/O streams and recursive serialization for serializing variable-length binary trees.",
+        "Implemented generic array, linked lists, stacks, and queues with random-access and bidirectional iterators, alongside a multicast delegate event system."
       ],
-      tags: ["C++20", "Templates", "Custom Allocators", "Bit Manipulation", "STL Containers", "Image Processing"],
+      tags: ["C++20", "Templates", "Custom Iterators", "Bit Manipulation", "STL Containers", "Image Processing"],
       githubUrl: "https://github.com/kawaiibaka0908/Image_library_Cpp",
       githubUrl2: "https://github.com/kawaiibaka0908/DAS_Implementation",
-      github2Label: "STL / Delegates",
+      github2Label: "STL / Containers Repo",
       featured: true,
       priorityOrder: { sde: 2, ml: 6 }
     },
     {
       id: "router-quest",
-      title: "Router Quest: Fuel-Constrained Graph Routing Solver",
-      subtitle: "C++, Graph Theory, Floyd-Warshall, Heuristics, Path Reconstruction",
+      title: "Router Quest",
+      subtitle: "Fuel-Constrained Graph Routing & Optimization Solver",
       category: ["sde", "systems"],
-      period: "Nov 2025 - Dec 2025",
-      description: "NP-hard fuel-constrained pickup-and-delivery routing optimization engine with lookahead simulation.",
-      bullets: [
-        "Formulated a high-speed C++ solver for the NP-hard, fuel-constrained pickup-and-delivery routing problem on weighted undirected graphs, enforcing precedence rules and tank-capacity bounds across intermediate refuel stations.",
-        "Combined the Floyd-Warshall O(V³) all-pairs shortest-path algorithm and parent-pointer tree reconstruction with a 2-step lookahead fuel-feasibility simulator, multi-start greedy heuristics, and a standalone route verifier."
+      period: "Nov 2025 — Dec 2025",
+      description: "A fast C++ pathfinder that solves a fuel-constrained pickup-and-delivery problem on weighted graphs where vehicles must plan detour refuel stops without running dry.",
+      story: "This was a challenge solving an NP-hard variant of vehicle routing: you have a fleet of delivery orders with pickup and dropoff precedence constraints, but your truck has a fixed fuel tank capacity and can only refuel at specific nodes. I precomputed all-pairs shortest paths using Floyd-Warshall, stored parent pointers for fast route reconstruction, and layered a 2-step lookahead greedy search with multi-start heuristics to find valid, fuel-safe paths in milliseconds.",
+      takeaways: [
+        "Precomputed all-pairs shortest paths via Floyd-Warshall and reconstructed exact paths using parent pointer backtracking.",
+        "Designed a 2-step lookahead fuel feasibility check that dynamically reroutes trucks to the nearest charging/refueling station before tank exhaustion.",
+        "Included multi-start randomized greedy restarts and an automated route validator to verify zero constraint violations."
       ],
       tags: ["C++", "Graph Algorithms", "Floyd-Warshall", "Optimization", "Greedy Heuristics"],
       githubUrl: "https://github.com/kawaiibaka0908/Router_Quest",
@@ -129,15 +135,16 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "promo-finder",
-      title: "Promo Finder: AI Video Script-to-Promo Clipping Pipeline",
-      subtitle: "Python, Sentence-Transformers (MiniLM), Gemma-26B, Streamlit, Pydantic",
+      title: "Promo Finder",
+      subtitle: "Script-to-Promo Extraction Pipeline with LLM-as-a-Judge",
       category: ["ml"],
-      period: "Oct 2026 - Nov 2026",
-      description: "Hybrid LLM-as-a-Judge and semantic embedding pipeline for automatic promotional trailer scene extraction.",
-      bullets: [
-        "Developed a hybrid rule-based and Generative AI workflow that parses timestamped screenplays into structured Pydantic scene beats, extracting standalone 20-to-60-second promotional clips with engaging 3-second opening hooks and clean dialogue cuts.",
-        "Modeled a 0.25s dramatic intensity score across each script by combining pacing cues (camera cuts, speaker transitions, and sound effects) with Sentence-Transformers (MiniLM) emotional tone embeddings to locate peak scenes.",
-        "Constructed a cold-viewer LLM-as-a-Judge (Gemma-26B) to score candidate clips on hook strength, cliffhanger tension, clarity, and spoiler risk across 4 evaluation metrics, paired with a story-arc montage builder, Streamlit UI, and Pytest suite."
+      period: "Oct 2026 — Nov 2026",
+      description: "A pipeline that reads screenplay scripts, analyzes scene tension and pacing, and uses an LLM judge to automatically extract the punchiest 20-to-60 second trailer clips.",
+      story: "Built for an on-campus recruiting process challenge. Rather than relying on simple keyword matching, I broke movie and TV scripts down into structured Pydantic scene beats. The pipeline models dramatic intensity every quarter-second by combining speaker transition pace, sound effect frequency, and Sentence-Transformer (MiniLM) tone embeddings. Candidate clips are then evaluated by an LLM judge (Gemma-26B) on hook strength, tension, and spoiler risk.",
+      takeaways: [
+        "Parsed unstructured screenplays into timestamped Pydantic scene schemas, isolating candidates for 20-to-60-second teasers with 3-second opening hooks.",
+        "Scored scene intensity using MiniLM embedding distances combined with camera cut and dialogue cues.",
+        "Implemented an LLM-as-a-Judge evaluation prompt with Gemma-26B to rate clip quality across hook strength, cliffhanger pacing, clarity, and spoiler safety."
       ],
       tags: ["Python", "Generative AI", "Sentence-Transformers", "LLM Evaluation", "Streamlit", "Pydantic", "Pytest"],
       githubUrl: "https://github.com/kawaiibaka0908/Promo-Extraction",
@@ -146,15 +153,16 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "deep-rl-trading",
-      title: "Algorithmic Trading via Deep Reinforcement Learning",
-      subtitle: "Python, TensorFlow 2, DDDQN, BiLSTM, Gymnasium, Prioritized Experience Replay",
+      title: "Deep RL Algorithmic Trading",
+      subtitle: "Bitcoin Trading Agent with DDDQN & Prioritized Replay",
       category: ["ml"],
-      period: "Jan 2026 - Feb 2026",
-      description: "Autonomous cryptocurrency trading agent with Dueling Double Deep Q-Networks and temporal advantage streams.",
-      bullets: [
-        "Trained a Dueling Double Deep Q-Network (DDDQN) with a Bidirectional LSTM encoder, analyzing 1,820+ historical Bitcoin daily bars (2020 - 2025) across 10+ technical indicators and a 90-day lookback window to decouple value and advantage streams.",
-        "Designed a position-aware Gymnasium trading environment with 3 discrete actions (Buy, Sell, and Hold), simulating realistic market friction via 0.1% (10 bps) transaction fees, dynamic position sizing, stop-loss triggers, and drawdown controls.",
-        "Accelerated training convergence to 500 episodes by implementing Prioritized Experience Replay (PER), combining temporal-difference error sampling, importance-sampling bias correction, 64-sample mini-batches, and 20-step target network syncs."
+      period: "Jan 2026 — Feb 2026",
+      description: "An autonomous trading agent trained on 5 years of daily Bitcoin candlestick bars using Dueling Double Deep Q-Networks and temporal advantage streams.",
+      story: "I wanted to test whether deep reinforcement learning could learn non-trivial trading rules under realistic market friction. I wrapped 1,820 daily Bitcoin bars with technical indicators (RSI, MACD, Bollinger Bands) into a custom Gymnasium environment. The agent trades with discrete Buy, Sell, and Hold actions while factoring in a 0.1% (10 bps) fee per transaction, dynamic stop-losses, and drawdown penalties.",
+      takeaways: [
+        "Separated state-value and action-advantage streams using a Dueling Double DQN architecture with a Bidirectional LSTM temporal encoder.",
+        "Simulated real trading friction in a custom Gymnasium environment: 10 bps slippage/brokerage fees, position sizing limits, and portfolio drawdown penalties.",
+        "Implemented Prioritized Experience Replay (PER) with importance-sampling bias correction, cutting convergence time down to ~500 episodes."
       ],
       tags: ["Python", "TensorFlow 2", "Reinforcement Learning", "DDDQN", "BiLSTM", "Gymnasium", "Quantitative Finance"],
       githubUrl: "https://github.com/kawaiibaka0908/Algorithmic_Trading_DeepRL",
@@ -163,15 +171,16 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "ai-candidate-ranker",
-      title: "High-Throughput Candidate Ranking & Anomaly Detection Pipeline",
-      subtitle: "Python, Bounded Min-Heap O(N log K), TF-IDF, Gradio, Hugging Face Spaces",
+      title: "Streaming Candidate Search Engine",
+      subtitle: "High-Throughput Ranking & Anomaly Filter (100k Records in 120MB RAM)",
       category: ["sde", "ml"],
-      period: "May 2026 - Jun 2026",
-      description: "Single-pass stream processing engine screening 100,000 candidate records in under 65 seconds within 120 MB RAM.",
-      bullets: [
-        "Streamlined a single-pass information-retrieval workflow that evaluates 100,000 candidate records (487 MB) in under 65 seconds within 120 MB of peak RAM, utilizing bounded min-heap Top-100 selection (O(N log K)) and TF-IDF cosine similarity.",
-        "Formulated a 20-feature scoring model and anomaly filter across 70,584 eligible applicants to flag fabricated histories, timeline inconsistencies, and keyword stuffing, significantly reducing false positives in the ranked output.",
-        "Created a deterministic natural-language generator that produces 480 structured, evidence-backed recruiter justifications via hash-based template selection, deployed through an interactive Gradio interface on Hugging Face Spaces."
+      period: "May 2026 — Jun 2026",
+      description: "A fast stream-processing engine that ranks 100,000 applicant profiles in under 65 seconds using a bounded min-heap and TF-IDF—staying completely within 120MB of RAM.",
+      story: "I built this to see how much performance I could extract out of a single-pass streaming Python service without spinning up heavy databases or Docker containers. It streams in a 487MB dataset record-by-record, computes TF-IDF similarity, applies a 20-feature scoring rule, filters out anomaly traps (like keyword stuffing and impossible career dates), and keeps only the Top-K candidates in an O(N log K) bounded min-heap. Deployed live on Hugging Face Spaces with Gradio.",
+      takeaways: [
+        "Processes 100,000 profiles (487MB) in under 65 seconds while keeping peak RAM usage below 120MB using single-pass bounded heap evaluation.",
+        "Filters suspicious applicants through a 20-feature rule engine catching keyword stuffers, overlapping date gaps, and honeypot claims.",
+        "Generates clear, deterministic recruiter explanations for each ranked profile, served via a live interactive Gradio web app."
       ],
       tags: ["Python", "Stream Processing", "Bounded Min-Heap", "TF-IDF", "Gradio", "Hugging Face Spaces"],
       githubUrl: "https://github.com/kawaiibaka0908/ai-candidate-ranker",
@@ -181,14 +190,16 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "semantic-image-segmentation",
-      title: "Semantic Image Segmentation with Nested U-Net++",
-      subtitle: "PyTorch / TensorFlow, U-Net++, NumPy Vectorization, Dice Loss, Kaggle GPU",
+      title: "Semantic Image Segmentation with U-Net++",
+      subtitle: "Pixel-Wise Deep Learning with Nested Skip Pathways",
       category: ["ml"],
-      period: "May 2025 - Jun 2025",
-      description: "Pixel-wise semantic segmentation with nested skip pathways and morphological boundary refinement.",
-      bullets: [
-        "Built an optimized U-Net++ encoder-decoder architecture (32 to 512 filters with nested skip connections and dropout regularization) for pixel-wise semantic segmentation on RGB image-mask pairs, mitigating class imbalance via combined Dice and Cross-Entropy Loss.",
-        "Implemented a vectorized NumPy RGB-to-class-ID label mapping module and morphological refinement (dilation and erosion) to sharpen boundary masks, reaching 80% validation accuracy and 230 ms/image inference latency within a 395 MB checkpoint."
+      period: "May 2025 — Jun 2025",
+      description: "A semantic segmentation model for aerial/satellite RGB images using nested U-Net++ skip connections and combined Dice + Cross-Entropy loss.",
+      story: "Standard U-Nets can lose fine boundary details when bridging encoder and decoder layers. I built an optimized U-Net++ architecture with dense nested skip pathways to reduce semantic gaps between feature maps. Using combined Dice and Cross-Entropy loss, the model handles imbalanced pixel classes cleanly, reaching 80% validation accuracy with 230ms inference per image.",
+      takeaways: [
+        "Constructed a nested U-Net++ encoder-decoder (32 to 512 channels) with intermediate skip convolutions and dropout regularization.",
+        "Tackled background-to-foreground pixel imbalance using a combined Dice Loss + Cross-Entropy objective function.",
+        "Vectorized RGB-to-mask conversion with NumPy and applied morphological closing to sharpen output segmentation boundaries."
       ],
       tags: ["Deep Learning", "Computer Vision", "U-Net++", "NumPy", "Dice Loss", "Image Segmentation"],
       githubUrl: "https://github.com/kawaiibaka0908/Image_Segmentation",
@@ -197,14 +208,16 @@ export const PORTFOLIO_DATA = {
     },
     {
       id: "molconvert",
-      title: "MolConvert: Multi-Format Molecular Compiler & CLI",
-      subtitle: "Python, CLI Architecture, 3D Geometry, RDKit, Pytest (376 Tests)",
+      title: "MolConvert: Multi-Format Molecular CLI",
+      subtitle: "Structural Bioinformatics Format Compiler & 3D Reconstruction",
       category: ["sde", "systems"],
-      period: "Jun 2026 - Jul 2026",
-      description: "Modular command-line utility translating across 9 chemical file formats with internal 3D coordinate reconstruction.",
-      bullets: [
-        "Programmed a structural bioinformatics CLI that translates across 9 molecular file formats (including PDB, SDF, Gaussian, and Z-Matrix) via a unified JSON internal-coordinate representation (bond length, bond angle, and torsion angle).",
-        "Executed 3D coordinate reconstruction using NumPy rotational matrices with low round-trip RMSD deviation, Kabsch structural alignment, RDKit chemical validity checks, and 376 Pytest unit tests."
+      period: "Jun 2026 — Jul 2026",
+      description: "A command-line tool that converts between 9 chemistry file formats (PDB, SDF, Gaussian, Z-matrix) with 3D coordinate reconstruction and 376 unit tests.",
+      story: "For a computational biology course project, I was tired of incompatible molecular file formats. I built a modular Python CLI that parses 9 chemical formats into a single internal JSON intermediate representation (storing bond lengths, angles, and torsions). It reconstructs 3D Cartesian coordinates using rotation matrices and is verified with 376 Pytest unit tests.",
+      takeaways: [
+        "Designed a JSON intermediate representation to convert across 9 molecular file formats without point-to-point translation logic.",
+        "Reconstructed 3D coordinates from internal bond metrics using NumPy rotational matrices and verified chemical validity with RDKit.",
+        "Maintained a test suite of 376 automated Pytest cases across round-trip format conversions."
       ],
       tags: ["Python", "CLI Tool", "Bioinformatics", "3D Geometry", "RDKit", "Pytest"],
       githubUrl: "https://github.com/kawaiibaka0908/MolConvert",
@@ -215,54 +228,54 @@ export const PORTFOLIO_DATA = {
 
   skills: {
     languages: ["C++20", "C", "Python", "Solidity", "JavaScript", "TypeScript", "SQL", "Bash"],
-    systemsAndCpp: ["STL", "Generic Programming / Templates", "Custom Iterators", "Memory Layout & Bitwise I/O", "Data Structures & Algorithms", "OOP", "Operating Systems", "Computer Networks", "DBMS"],
-    machineLearning: ["PyTorch", "TensorFlow 2.x", "Scikit-Learn", "Deep RL (DDDQN, Gymnasium)", "Computer Vision (CNNs, U-Net++)", "BiLSTM", "Transformers"],
-    genAIAndNLP: ["LLM-as-a-Judge", "Sentence-Transformers", "TF-IDF Vectorization", "Prompt Engineering", "Structured Outputs (Pydantic)", "Groq / OpenAI / Gemini APIs"],
-    backendAndCloud: ["Next.js 15", "React.js", "FastAPI", "Node.js", "Express.js", "Tailwind CSS", "PostgreSQL", "MongoDB", "Docker", "Git / GitHub"],
-    coursework: ["Data Structures & Algorithms (CS 101)", "Linear Algebra & Multivariable Calculus", "Probability & Statistics", "Quantum Computing (EE 696)", "Hardware-Aware Deep Learning", "Basic Electronics (EE 101)"]
+    systemsAndCpp: ["Modern C++20", "Templates & Generic Programming", "Custom Iterators", "Memory Layout & Bitwise I/O", "Data Structures & Algorithms", "Operating Systems", "Computer Networks", "DBMS"],
+    machineLearning: ["PyTorch", "TensorFlow 2.x", "Deep RL (DDDQN, Gymnasium)", "Computer Vision (U-Net++, CNNs)", "Scikit-Learn", "BiLSTM", "Transformers"],
+    genAIAndNLP: ["LLM-as-a-Judge Evaluation", "Sentence-Transformers", "TF-IDF Vectorization", "Prompt Engineering", "Pydantic Schemas", "OpenAI / Gemini / Groq APIs"],
+    backendAndCloud: ["Next.js 15", "React.js", "FastAPI", "Node.js", "Express.js", "Tailwind CSS", "PostgreSQL", "MongoDB", "Docker", "Git"],
+    coursework: ["Data Structures & Algorithms", "Linear Algebra & Differential Equations", "Probability & Statistics", "Quantum Computing", "Hardware-Aware Deep Learning"]
   },
 
   achievements: [
     {
-      title: "ETHGlobal New Delhi Hackathon — 1st Delegation from IIT Guwahati",
+      title: "ETHGlobal New Delhi Hackathon — 1st Team from IIT Guwahati",
       organization: "ETHGlobal",
       date: "Oct 2025",
-      description: "Selected among the first contingent from IIT Guwahati to represent the institute at ETHGlobal New Delhi, building Web3 protocol infrastructure in a 36-hour sprint.",
-      badge: "International Hackathon"
+      description: "Part of the very first team from our campus to qualify and travel to ETHGlobal New Delhi. We spent an intense 36-hour sprint building decentralized infrastructure alongside builders from around the world.",
+      badge: "Hackathon"
     },
     {
-      title: "Summer Analytics — Top 10 Percentile Nationwide",
+      title: "Summer Analytics — Top 10% Nationwide",
       organization: "Consulting & Analytics Club, IIT Guwahati",
       date: "Jul 2024",
-      description: "Ranked in the Top 10% nationwide out of 1,000+ participants in the premier machine learning and neural networks competition.",
+      description: "Placed in the top 10 percentile among 1,000+ competitors in IITG's flagship summer machine learning and neural networks competition.",
       linkText: "View Certificate",
       linkUrl: "https://drive.google.com/file/d/1RewRE5Y_1C9wQFW5D5PqaKRbzYn0mier/view?usp=sharing",
-      badge: "National Ranking"
+      badge: "Competition"
     },
     {
       title: "Product Matters 4.0 Certification",
       organization: "Product Management Club, IIT Guwahati",
       date: "2024",
-      description: "Completed intensive product design, user journey mapping, and metric optimization course.",
+      description: "Completed intensive training in user research, metric optimization, and product wireframing.",
       linkText: "View Certificate",
       linkUrl: "https://drive.google.com/file/d/1O-hhNzUgDuKVZacZC4g3b_vS1w0fnGwl/view?usp=sharing",
-      badge: "Certification"
+      badge: "Product"
     },
     {
-      title: "Executive Member — Finance & Economics Club",
+      title: "Core Team Member — Finance & Economics Club",
       organization: "IIT Guwahati",
-      date: "Mar 2025 - Apr 2026",
-      description: "Spearheaded the Blockchain and Algorithmic Trading curriculum; mentored 200+ undergraduate students across hands-on workshops.",
-      badge: "Leadership"
+      date: "Mar 2025 — Apr 2026",
+      description: "Led the blockchain and algorithmic trading modules for our club, mentoring over 200 junior students in technical workshops.",
+      badge: "Campus Leadership"
     },
     {
-      title: "Hostel Committee Member & Short Film Director (4th Place)",
+      title: "Hostel Committee Member & 4th Place Short Film Director",
       organization: "Kapili Hostel, IIT Guwahati",
-      date: "Apr 2025 - May 2026",
-      description: "Overseeing events and logistics for 400+ residents; directed and scripted short film recognized with 4th Place campus-wide.",
-      linkText: "Watch Video",
+      date: "Apr 2025 — May 2026",
+      description: "Organized hostel events for 400+ residents. Outside tech, I wrote and directed a campus short film that earned 4th place.",
+      linkText: "Watch the Short Film",
       linkUrl: "https://www.youtube.com/watch?v=VW5kzMDOuwc",
-      badge: "Extracurricular"
+      badge: "Creative"
     }
   ] as Achievement[]
 };
